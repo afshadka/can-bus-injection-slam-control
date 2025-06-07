@@ -34,6 +34,27 @@ Useful for:
 - CAN interface active as `can0`
 
 ---
+🧼 How Handover Works
+
+The function release_control() ensures:
+
+Motors are disabled (0x6040 = 0x06)
+
+Target position is cleared (0x607B = 0)
+
+Mode of operation reset (0x6060 = 0)
+
+Control word reset (0x6040 = 0)
+
+
+This frees the controller for the SLAM system or mobile app to regain motor control cleanly, avoiding any conflict.
+
+
+---
+
+👤 Author
+
+Developed by Afshad Ka
 
 ## ⚙️ Setup
 
@@ -41,3 +62,6 @@ Useful for:
 sudo apt update
 sudo apt install python3-pip
 pip3 install python-can
+
+sudo ip link set can0 up type can bitrate 500000
+
